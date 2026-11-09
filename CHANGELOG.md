@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.0.2
+
+- API keys screen: says correctly that keys are stored in the macOS Keychain.
+- A Debug build and the release build can no longer run at the same time (both would grab
+  the same hotkeys).
+- Debug builds use their own id (`app.keyly.Keyly.debug`) and Keychain item, so development
+  and screenshot runs never touch your real settings or keys.
+- README: screenshots of the main window.
+
 ## 3.0.1
 
 - Custom modules: a translation module could return the text untranslated or a refusal —
