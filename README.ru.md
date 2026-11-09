@@ -22,13 +22,14 @@
 </p>
 <p>
   <img src="docs/screenshots/window-settings.png" width="49%" alt="Настройки: общие параметры и API-ключи в связке ключей macOS">
+  <img src="docs/screenshots/window-snippets.png" width="49%" alt="Сниппеты: триггеры, хоткеи и переменные">
 </p>
 
 <sub>На снимках английский интерфейс — язык переключается в настройках.</sub>
 
 <p>
-  <img src="docs/screenshots/dictation-recording.png" width="420" alt="Плашка диктовки во время записи">
-  <img src="docs/screenshots/dictation-copied.png" width="420" alt="Диктовка готова, текст в буфере обмена">
+  <img src="docs/screenshots/dictation-recording.png" width="49%" alt="Плашка диктовки во время записи">
+  <img src="docs/screenshots/dictation-copied.png" width="49%" alt="Диктовка готова, текст в буфере обмена">
 </p>
 
 ## Требования

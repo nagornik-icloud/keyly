@@ -22,11 +22,12 @@ Smart hotkeys for text on macOS. Keyly lives in the menu bar and helps where you
 </p>
 <p>
   <img src="docs/screenshots/window-settings.png" width="49%" alt="Settings: general options and API keys stored in the macOS Keychain">
+  <img src="docs/screenshots/window-snippets.png" width="49%" alt="Snippets: triggers, hotkeys and placeholders">
 </p>
 
 <p>
-  <img src="docs/screenshots/dictation-recording.png" width="420" alt="Dictation indicator while recording">
-  <img src="docs/screenshots/dictation-copied.png" width="420" alt="Dictation done, text copied to the clipboard">
+  <img src="docs/screenshots/dictation-recording.png" width="49%" alt="Dictation indicator while recording">
+  <img src="docs/screenshots/dictation-copied.png" width="49%" alt="Dictation done, text copied to the clipboard">
 </p>
 
 ## Requirements
