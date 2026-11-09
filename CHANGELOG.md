@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.1
+
+- Custom modules: a translation module could return the text untranslated or a refusal —
+  the request no longer tells the model to "keep the text's language". The text is treated
+  as data to transform, never as a message to answer.
+
 ## 3.0 — first public release
 
 Features: layout switch (RU ⇄ EN), typo correction, voice to text (cloud or local model),
