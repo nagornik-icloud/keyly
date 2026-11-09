@@ -64,7 +64,7 @@ cd keyly
 ./scripts/build-app.sh            # builds Release (arm64) into /Applications/Keyly.app
 ```
 
-Requires Xcode 16+. The script builds for arm64 only: the FluidAudio dependency (local speech recognition) does not compile for Intel.
+Requires Xcode 26 or later. The script builds for arm64 only: the FluidAudio dependency (local speech recognition) does not compile for Intel.
 
 Code signing: without configuration the app is signed ad-hoc ("Sign to Run Locally"). To sign with your own Apple Development identity, create `Config/Local.xcconfig` (git-ignored):
 

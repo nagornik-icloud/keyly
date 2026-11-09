@@ -64,7 +64,7 @@ cd keyly
 ./scripts/build-app.sh            # собирает Release (arm64) в /Applications/Keyly.app
 ```
 
-Нужен Xcode 16+. Скрипт собирает только под arm64: зависимость FluidAudio (локальное распознавание речи) не компилируется под Intel.
+Нужен Xcode 26 или новее. Скрипт собирает только под arm64: зависимость FluidAudio (локальное распознавание речи) не компилируется под Intel.
 
 Подпись: без настройки приложение подписывается ad-hoc («Sign to Run Locally»). Чтобы подписать своим сертификатом Apple Development, создайте `Config/Local.xcconfig` (он в .gitignore):
 

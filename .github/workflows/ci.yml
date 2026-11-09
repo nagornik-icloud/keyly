@@ -10,6 +10,10 @@ jobs:
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
+      # The project uses default MainActor isolation (Swift 6.2) — needs Xcode 26 or later.
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
       - name: Unit tests
         run: swift test
       - name: Build app (arm64, ad-hoc signed)
