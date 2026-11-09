@@ -1,0 +1,9 @@
+// Code signing.
+// Without a team the app is signed ad-hoc ("Sign to Run Locally") and builds on any Mac.
+// To sign with your own Apple Development identity, create Config/Local.xcconfig
+// (git-ignored) with:
+//   DEVELOPMENT_TEAM = <your team id>
+//   CODE_SIGN_IDENTITY = Apple Development
+CODE_SIGN_IDENTITY = -
+DEVELOPMENT_TEAM =
+#include? "Local.xcconfig"

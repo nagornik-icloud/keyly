@@ -1,0 +1,23 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "NSMicrophoneUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keyly needs microphone access to turn your speech into text."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keyly нужен доступ к микрофону, чтобы превращать речь в текст."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

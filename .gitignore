@@ -1,0 +1,13 @@
+# Xcode
+DerivedData/
+build/
+build-rel/
+xcuserdata/
+*.xcuserstate
+# SwiftPM
+.build/
+.swiftpm/
+# macOS
+.DS_Store
+# Local signing (your team id)
+Config/Local.xcconfig
