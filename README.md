@@ -12,6 +12,18 @@ Smart hotkeys for text on macOS. Keyly lives in the menu bar and helps where you
 
 [Русская версия](README.ru.md)
 
+<p align="center">
+  <img src="docs/screenshots/window-overview.png" width="760" alt="Keyly overview: modules, custom AI modules, app hotkeys and usage stats">
+</p>
+
+<p>
+  <img src="docs/screenshots/window-voice.png" width="49%" alt="Voice settings: cloud or on-device recognition, model, text cleanup">
+  <img src="docs/screenshots/window-custom-module.png" width="49%" alt="A custom AI module: instruction, key and model, text source and result">
+</p>
+<p>
+  <img src="docs/screenshots/window-settings.png" width="49%" alt="Settings: general options and API keys stored in the macOS Keychain">
+</p>
+
 <p>
   <img src="docs/screenshots/dictation-recording.png" width="420" alt="Dictation indicator while recording">
   <img src="docs/screenshots/dictation-copied.png" width="420" alt="Dictation done, text copied to the clipboard">

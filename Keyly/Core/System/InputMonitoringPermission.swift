@@ -23,7 +23,12 @@ enum InputMonitoringPermission {
 
     /// Whether access is granted. No prompt, no side effects.
     static var isGranted: Bool {
-        CGPreflightListenEventAccess()
+        #if DEBUG
+        // Demo screenshots show the app as a set-up user sees it, without TCC grants for a
+        // freshly built binary.
+        if DemoContent.isActive { return true }
+        #endif
+        return CGPreflightListenEventAccess()
     }
 
     /// Ask the system. The dialog is shown only ONCE per install: after that macOS silently

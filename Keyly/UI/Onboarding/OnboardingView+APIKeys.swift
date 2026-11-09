@@ -402,6 +402,13 @@ extension OnboardingView {
     }
 
     func validateKey(entry: APIKeyEntry) {
+        #if DEBUG
+        // Demo keys are placeholders: never send them to a provider.
+        if DemoContent.isActive {
+            validationStatus[entry.id] = .success
+            return
+        }
+        #endif
         // Format BEFORE the network. A truncated tail yields the same 401 as a foreign key,
         // and the user goes off fixing the wrong thing. A request with a known-broken key is pointless.
         let verdict = APIKeyFormat.check(entry.value, provider: entry.provider == .openai ? .openai : .gemini)

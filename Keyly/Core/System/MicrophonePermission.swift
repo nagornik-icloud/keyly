@@ -5,7 +5,12 @@ import AppKit
 public struct MicrophonePermission {
     /// Current microphone authorization, without prompting.
     public static var isAuthorized: Bool {
-        AVCaptureDevice.authorizationStatus(for: .audio) == .authorized
+        #if DEBUG
+        // Demo screenshots show the app as a set-up user sees it, without TCC grants for a
+        // freshly built binary.
+        if DemoContent.isActive { return true }
+        #endif
+        return AVCaptureDevice.authorizationStatus(for: .audio) == .authorized
     }
 
     /// Checks and, if needed, requests microphone access.

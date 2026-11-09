@@ -20,6 +20,11 @@ public struct AccessibilityPermission {
     
     /// Whether the app has trusted Accessibility access, without showing a prompt.
     public static var isTrusted: Bool {
+        #if DEBUG
+        // Demo screenshots show the app as a set-up user sees it, without TCC grants for a
+        // freshly built binary.
+        if DemoContent.isActive { return true }
+        #endif
         return AXIsProcessTrusted()
     }
 }

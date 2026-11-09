@@ -25,6 +25,10 @@ final class APIKeyVault {
         // Screenshot/probe runs must not move or erase the user's real keys.
         guard !AppRunMode.isToolRun else {
             writeBlocked = true
+            #if DEBUG
+            // Demo keys live only in memory: writes stay blocked, nothing reaches Keychain.
+            if DemoContent.isActive { return DemoContent.apiKeys }
+            #endif
             return []
         }
         let plaintext = defaults.data(forKey: Self.plaintextKey) ?? legacyPlaintext()
@@ -80,13 +84,13 @@ final class APIKeyVault {
     /// Before the rename keys lived in the old app's domain; the settings migration skips
     /// them on purpose, so they are read straight from there.
     private func legacyPlaintext() -> Data? {
-        guard Bundle.main.bundleIdentifier != AppIdentity.legacyBundleID else { return nil }
+        guard AppIdentity.isReleaseIdentity else { return nil }
         return defaults.persistentDomain(forName: AppIdentity.legacyBundleID)?[Self.plaintextKey] as? Data
     }
 
     private func erasePlaintext() {
         defaults.removeObject(forKey: Self.plaintextKey)
-        guard Bundle.main.bundleIdentifier != AppIdentity.legacyBundleID,
+        guard AppIdentity.isReleaseIdentity,
               var legacy = defaults.persistentDomain(forName: AppIdentity.legacyBundleID),
               legacy[Self.plaintextKey] != nil else { return }
         legacy.removeValue(forKey: Self.plaintextKey)

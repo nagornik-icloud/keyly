@@ -12,6 +12,20 @@
 
 [English version](README.md)
 
+<p align="center">
+  <img src="docs/screenshots/window-overview.png" width="760" alt="Обзор Keyly: модули, свои AI-модули, хоткеи приложений и статистика">
+</p>
+
+<p>
+  <img src="docs/screenshots/window-voice.png" width="49%" alt="Голос: облачное или локальное распознавание, модель, обработка текста">
+  <img src="docs/screenshots/window-custom-module.png" width="49%" alt="Свой AI-модуль: инструкция, ключ и модель, источник текста и результат">
+</p>
+<p>
+  <img src="docs/screenshots/window-settings.png" width="49%" alt="Настройки: общие параметры и API-ключи в связке ключей macOS">
+</p>
+
+<sub>На снимках английский интерфейс — язык переключается в настройках.</sub>
+
 <p>
   <img src="docs/screenshots/dictation-recording.png" width="420" alt="Плашка диктовки во время записи">
   <img src="docs/screenshots/dictation-copied.png" width="420" alt="Диктовка готова, текст в буфере обмена">

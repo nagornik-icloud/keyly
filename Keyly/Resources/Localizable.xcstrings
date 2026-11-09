@@ -3046,13 +3046,13 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The key is stored on this Mac, in the app’s settings, and is sent only to the chosen provider. On failure Keyly tries the other keys of THE SAME provider and never switches to another one. Layout switching and snippets work locally, with no network."
+            "value": "The key is stored on this Mac, in the macOS Keychain, and is sent only to the chosen provider. On failure Keyly tries the other keys of THE SAME provider and never switches to another one. Layout switching and snippets work locally, with no network."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ключ хранится на этом компьютере, в настройках приложения, и уходит только к выбранному провайдеру. Отказал — Keyly пробует другие ключи ТОГО ЖЕ провайдера и не уходит к другому. Переключение раскладки и сниппеты работают локально, без сети."
+            "value": "Ключ хранится на этом компьютере, в связке ключей macOS, и уходит только к выбранному провайдеру. Отказал — Keyly пробует другие ключи ТОГО ЖЕ провайдера и не уходит к другому. Переключение раскладки и сниппеты работают локально, без сети."
           }
         }
       }

@@ -1005,7 +1005,7 @@ final class HotKeyManager {
     /// One ⌥⌘ family: one modifier for the whole product, mnemonic letters. ⌥⌘V is deliberately
     /// NOT used for voice — in Finder it's "Move Item Here", and a global intercept would break
     /// regular file handling; ⌥⌘R (Record) is used instead.
-    private static let defaultHotKeys: [(key: String, combo: KeyCombo)] = [
+    static let defaultHotKeys: [(key: String, combo: KeyCombo)] = [
         (SettingsKeys.layoutHotKey,        KeyCombo(keyCode: UInt16(kVK_ANSI_L), modifiers: [.command, .option])),
         (SettingsKeys.errorFixHotKey,      KeyCombo(keyCode: UInt16(kVK_ANSI_E), modifiers: [.command, .option])),
         (SettingsKeys.voiceHotKey,         KeyCombo(keyCode: UInt16(kVK_ANSI_R), modifiers: [.command, .option])),

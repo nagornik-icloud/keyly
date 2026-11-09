@@ -5,7 +5,12 @@ import ServiceManagement
 class AppDelegate: NSObject, NSApplicationDelegate {
     /// Declared first on purpose: stored properties initialize in order, so the settings
     /// migration finishes before any other property can read UserDefaults.
-    private let legacySettingsMigrated: Void = LegacyDomainMigrator.runIfNeeded()
+    private let legacySettingsMigrated: Void = {
+        LegacyDomainMigrator.runIfNeeded()
+        #if DEBUG
+        MainActor.assumeIsolated { DemoContent.seedIfActive() }
+        #endif
+    }()
     var menuBarController: MenuBarController?
     var onboardingWindow: NSWindow?
     private let onboardingViewModel = OnboardingViewModel()

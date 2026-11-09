@@ -61,4 +61,12 @@ struct LegacyDomainMigrationTests {
         #expect(!LegacyDomainMigration.shouldRun(currentBundleID: AppIdentity.bundleID, alreadyDone: true))
         #expect(LegacyDomainMigration.shouldRun(currentBundleID: AppIdentity.bundleID, alreadyDone: false))
     }
+
+    /// A Debug build runs under its own id and must never copy, move or erase the user's data:
+    /// screenshot runs did exactly that twice when Debug shared the release domain.
+    @Test("A Debug build (own id) never migrates the user's legacy settings")
+    func debugBuildDoesNotMigrate() {
+        #expect(!LegacyDomainMigration.shouldRun(currentBundleID: "app.keyly.Keyly.debug", alreadyDone: false))
+        #expect(!LegacyDomainMigration.shouldRun(currentBundleID: nil, alreadyDone: false))
+    }
 }
