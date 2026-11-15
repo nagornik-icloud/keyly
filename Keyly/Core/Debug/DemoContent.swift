@@ -27,12 +27,31 @@ enum DemoContent {
 
     /// Placeholder values: capture runs make no network calls, and these are obviously not
     /// real keys if they ever show up on screen.
-    static let apiKeys: [APIKeyEntry] = [
-        APIKeyEntry(id: openAIKeyID, name: "Personal", value: "demo-key-openai-0000",
-                    provider: .openai, isBuiltin: false, model: nil),
-        APIKeyEntry(id: geminiKeyID, name: "Work", value: "demo-key-gemini-0000",
-                    provider: .gemini, isBuiltin: false, model: nil),
-    ]
+    ///
+    /// One exception, explicit and Debug-only: `KEYLY_VITRINA_GEMINI_KEY` puts a real Gemini key
+    /// behind the demo "Work" entry, so the showcase typo frame can show the product's REAL answer
+    /// to a demo sentence (`VitrinaFieldShots`). The value lives only in this process's memory —
+    /// nothing writes it to the keychain or defaults, and no frame shows a key.
+    static var apiKeys: [APIKeyEntry] {
+        let gemini = ProcessInfo.processInfo.environment["KEYLY_VITRINA_GEMINI_KEY"] ?? ""
+        return [
+            APIKeyEntry(id: openAIKeyID, name: "Personal", value: "demo-key-openai-0000",
+                        provider: .openai, isBuiltin: false, model: nil),
+            APIKeyEntry(id: geminiKeyID, name: "Work",
+                        value: gemini.isEmpty ? "demo-key-gemini-0000" : gemini,
+                        provider: .gemini, isBuiltin: false, model: nil),
+        ]
+    }
+
+    /// True when a real key was handed in for the showcase typo frame (see `apiKeys`).
+    static var hasVitrinaGeminiKey: Bool {
+        !(ProcessInfo.processInfo.environment["KEYLY_VITRINA_GEMINI_KEY"] ?? "").isEmpty
+    }
+
+    /// Typo fixing through the demo "Work" (Gemini) entry — for the showcase frame only.
+    static var geminiErrorFixSelection: APIKeySelection {
+        APIKeySelection(provider: .gemini, keyId: geminiKeyID, model: APIProvider.gemini.defaultModel)
+    }
 
     /// Overwrites the Debug domain with the demo set on every run, so frames are reproducible.
     static func seedIfActive(defaults: UserDefaults = .standard) {
@@ -46,28 +65,38 @@ enum DemoContent {
         }
         defaults.set(true, forKey: SettingsKeys.hotkeyDefaultsSeeded)
 
+        // Russian frames get Russian demo names: a Russian UI listing "Translate to English" and
+        // "Make it polite" reads as an unfinished translation, not as the product.
+        let ru = isRussian
         _ = CustomModuleStore.save([
-            CustomAIModule(name: "Translate to English",
-                           prompt: "Translate the text into natural, fluent English. Keep the formatting.",
+            CustomAIModule(name: ru ? "Перевод на английский" : "Translate to English",
+                           prompt: ru ? "Переведи текст на естественный, живой английский. Сохрани форматирование."
+                                      : "Translate the text into natural, fluent English. Keep the formatting.",
                            hotKey: combo(kVK_ANSI_E, [.control, .option]),
                            textSource: .selected, output: .insert),
-            CustomAIModule(name: "Make it polite",
-                           prompt: "Rewrite the message so it sounds friendly and professional.",
+            CustomAIModule(name: ru ? "Сделать вежливо" : "Make it polite",
+                           prompt: ru ? "Перепиши сообщение так, чтобы оно звучало дружелюбно и профессионально."
+                                      : "Rewrite the message so it sounds friendly and professional.",
                            hotKey: combo(kVK_ANSI_P, [.control, .option]),
                            textSource: .selected, output: .insert),
-            CustomAIModule(name: "Summarize",
-                           prompt: "Summarize the text in three short bullet points.",
+            CustomAIModule(name: ru ? "Выжимка" : "Summarize",
+                           prompt: ru ? "Сократи текст до трёх коротких пунктов."
+                                      : "Summarize the text in three short bullet points.",
                            hotKey: combo(kVK_ANSI_M, [.control, .option]),
                            textSource: .selected, output: .panel),
         ])
 
         _ = SnippetStore.save([
-            Snippet(name: "Email", content: "hello@example.com", triggers: ["@@mail"]),
-            Snippet(name: "Greeting", content: "Hi! Thanks for reaching out — I'll get back to you today.",
+            Snippet(name: ru ? "Почта" : "Email", content: "hello@example.com", triggers: ["@@mail"]),
+            Snippet(name: ru ? "Приветствие" : "Greeting",
+                    content: ru ? "Здравствуйте! Спасибо, что написали, — отвечу сегодня."
+                                : "Hi! Thanks for reaching out — I'll get back to you today.",
                     triggers: ["@@hi"]),
-            Snippet(name: "Address", content: "221B Baker Street, London",
+            Snippet(name: ru ? "Адрес" : "Address",
+                    content: ru ? "Невский проспект, 28, Санкт-Петербург" : "221B Baker Street, London",
                     hotKey: combo(kVK_ANSI_A, [.control, .option, .command])),
-            Snippet(name: "Signature", content: "Best regards,\nAlex", triggers: [";sig"],
+            Snippet(name: ru ? "Подпись" : "Signature",
+                    content: ru ? "С уважением,\nАлексей" : "Best regards,\nAlex", triggers: [";sig"],
                     triggerMode: .immediate),
         ])
 
@@ -98,6 +127,12 @@ enum DemoContent {
         let info = Bundle.main.infoDictionary
         let version = "v\(info?["CFBundleShortVersionString"] as? String ?? "") (\(info?["CFBundleVersion"] as? String ?? ""))"
         defaults.set(WhatsNew.versionToRemember(currentVersion: version), forKey: SettingsKeys.seenVersion)
+    }
+
+    /// The demo set follows the capture language (`KEYLY_QA_LANG=ru`), not the system one:
+    /// frames for the Russian page must not depend on the machine they were shot on.
+    nonisolated static var isRussian: Bool {
+        ProcessInfo.processInfo.environment["KEYLY_QA_LANG"] == "ru"
     }
 
     /// A believable week of use, so the dashboard isn't a row of zeros.

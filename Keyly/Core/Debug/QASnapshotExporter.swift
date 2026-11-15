@@ -12,6 +12,8 @@ import AppKit
 enum QASnapshotExporter {
 
     static func run() {
+        if VitrinaOverlayShots.isRequested { VitrinaOverlayShots.run(); return }
+        if VitrinaFieldShots.isRequested { Task { await VitrinaFieldShots.run() }; return }
         let outDir = outputDirectory()
         do {
             try FileManager.default.createDirectory(at: outDir, withIntermediateDirectories: true)
