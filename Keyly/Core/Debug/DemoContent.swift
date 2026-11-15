@@ -109,6 +109,22 @@ enum DemoContent {
                               keyCombo: combo(kVK_ANSI_T, [.control, .option])),
         ])
 
+        // Showcase frame for "one bare key, even a Mac system key" (15.11.2026): the F-row keys
+        // macOS doesn't let you remap, with no modifiers — F3 (Mission Control) → typo fix,
+        // F4 (Spotlight) → Claude, F5 (dictation) → voice. These are the owner's real habits.
+        // Codes are the built-in keyboard's media variants; `KeyCombo` names them F3/F4/F5.
+        if ProcessInfo.processInfo.environment["KEYLY_DEMO_FKEYS"] == "1" {
+            defaults.set(try? JSONEncoder().encode(combo(160, [])), forKey: SettingsKeys.errorFixHotKey)
+            defaults.set(try? JSONEncoder().encode(combo(176, [])), forKey: SettingsKeys.voiceHotKey)
+            AppLauncherStore.shared.replace(all: [
+                AppLaunchShortcut(appPath: "/Applications/Claude.app", keyCombo: combo(177, [])),
+                AppLaunchShortcut(appPath: "/Applications/Safari.app",
+                                  keyCombo: combo(kVK_ANSI_S, [.control, .option])),
+                AppLaunchShortcut(appPath: "/System/Applications/Notes.app",
+                                  keyCombo: combo(kVK_ANSI_N, [.control, .option])),
+            ])
+        }
+
         let selection = APIKeySelection(provider: .openai, keyId: openAIKeyID,
                                         model: APIProvider.openai.defaultModel)
         let encoded = try? JSONEncoder().encode(selection)

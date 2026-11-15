@@ -1,6 +1,6 @@
 # Keyly
 
-**Wrong layout, typos and voice to text — each on its own shortcut.**
+**Wrong layout, typos and voice to text — on a single key, even F4 or dictation.**
 
 Text hotkeys for Mac, for people who type in Russian and English. Fixes text right where you type it. Product page with a live demo: **[nagornik.ru/en/p/keyly](https://nagornik.ru/en/p/keyly)** · [Русская версия](README.ru.md)
 
@@ -37,6 +37,16 @@ Typed “Ghbdtn” instead of “Привет”? Press **⌥⌘L** — the word
 </p>
 
 The direction comes from the letters of the text, not from the current layout.
+
+### One key — even F4 or dictation
+
+Unique: Keyly puts an action on a single key with no ⌘ or ⌥ — even keys macOS won't let you remap. F5 with the microphone starts voice, F4 with the magnifier opens Claude, F3 fixes typos. Brightness, sound, player keys and F1–F19 too.
+
+<p align="center">
+  <img src="docs/screenshots/fklavishi.png" width="640" alt="Keyly cheat sheet “Active shortcuts”: typo fix on F3, voice on F5, Claude on F4 — a single key, no ⌘ or ⌥">
+</p>
+
+A bare key stops doing its macOS job while it is assigned — Keyly warns you when you set it. ⌘Q and ⌘Tab can never be taken.
 
 ### Typos fixed by a model
 
@@ -77,12 +87,10 @@ Each command has its own key and model, and a **Run** button to try it.
 - **Snippets** — type `@@mail` in any app: the trigger is erased and the text is in its place; or put a snippet on a hotkey. Placeholders for date, time, clipboard and cursor position.
 - **Snippet palette** ⌥⌘S — search by name, text and trigger, Enter inserts.
 - **Undo** the last Keyly edit ⌥⌘Z — refuses if you have already changed the text.
-- **Cheat sheet** ⌥⌘/ — all your active shortcuts in a floating window.
-- Shortcuts can sit on F1–F19 and media keys; Keyly never takes over ⌘Q or ⌘Tab.
 - **Pause** from the menu bar — all hotkeys off at once, for example while you share your screen.
-- The Overview’s **Readiness** check tells you when a permission is missing or a key stopped answering.
-- Leaves password fields alone and puts your clipboard back as it was.
-- Interface in English and Russian.
+- **Cheat sheet** ⌥⌘/ — all your active shortcuts in a floating window.
+
+Also good to know: leaves password fields alone and puts your clipboard back as it was; the Overview’s **Readiness** check tells you when a permission is missing; interface in English and Russian.
 
 Where a key is needed and where it isn't:
 
