@@ -127,6 +127,7 @@ enum VitrinaFieldShots {
         }
 
         // Overlays: the product's views, alpha kept for the composer.
+        // Margin = the product's own shadow margin: a fixed 40 pt cut the pill's shadow tail (radius 24 reaches ~2.5×).
         InputLevelMeter.shared.report(level: 0.12)
         let recording = VoiceOverlayState()
         let overlays: [(String, AnyView)] = [
@@ -136,7 +137,7 @@ enum VitrinaFieldShots {
              AnyView(BadgeView(text: BadgeText.fixing, kind: .progress, snapshot: true))),
         ]
         for (id, view) in overlays {
-            let renderer = ImageRenderer(content: view.fixedSize().padding(40).environment(\.colorScheme, .dark))
+            let renderer = ImageRenderer(content: view.fixedSize().padding(Theme.Elevation.pillShadowMargin).environment(\.colorScheme, .dark))
             renderer.scale = scale
             renderer.isOpaque = false
             guard let cg = renderer.cgImage else { fail("не удалось отрисовать \(id)") }

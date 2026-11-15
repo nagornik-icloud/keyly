@@ -44,7 +44,7 @@ enum VitrinaOverlayShots {
         // seeded demo stores, not from the catalog fixture (that one lists a real user's apps).
         // No shadow padding — on a phone every point of width costs text size.
         let cheatsheet = AnyView(CheatsheetView(rows: CheatsheetRows.build(), snapshot: true))
-        for (id, view, pad) in shots.map({ ($0.0, $0.1, CGFloat(40)) })
+        for (id, view, pad) in shots.map({ ($0.0, $0.1, Theme.Elevation.pillShadowMargin) })
             + [("vitrina-cheatsheet", cheatsheet, CGFloat(1))] {
             let content = view
                 .fixedSize()
